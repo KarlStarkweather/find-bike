@@ -1,6 +1,6 @@
 export default class BikeService {
-  static findBike(distance) {
-    return fetch(`https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=IP&distance=${distance}&stolenness=stolen`)
+  static findBike(distance, zipCode) {
+    return fetch(`https://bikeindex.org:443/api/v3/search?page=1&per_page=100&location=${zipCode}&distance=${distance}&stolenness=proximity`)
       .then(function(response) {
         if (!response.ok) {
           throw Error(response.statusText);
@@ -9,8 +9,6 @@ export default class BikeService {
       })
       .catch(function(error) {
         return error;
-      })
+      });
   }
 }
-
-
